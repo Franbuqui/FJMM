@@ -1,0 +1,605 @@
+/* Reset CSS */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Color Variables */
+:root {
+  --primary-color: #00BFFF; /* DeepSkyBlue */
+  --secondary-color: #FF4500; /* OrangeRed */
+  --accent-color: #FFD700; /* Gold */
+  --background-color: #0D1B2A; /* Dark Blue */
+  --text-color: #FFFFFF; /* White */
+  --greeting-color: #00BFFF; /* DeepSkyBlue */
+  --name-color: #FFD700; /* Gold */
+  --profession-color: #FF4500; /* OrangeRed */
+}
+
+/* Global Styles */
+html, body, .page-container {
+  height: 100%;
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 18px;
+  font-weight: 300;
+  color: var(--text-color);
+  line-height: 1.5;
+  background-color: var(--background-color);
+  overflow-x: hidden; /* Prevent horizontal scrollbar */
+}
+
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+a:hover {
+  color: var(--secondary-color);
+}
+
+p {
+  line-height: 1.7;
+}
+
+h1, h2, h3, h4 {
+  font-family: 'Montserrat', sans-serif;
+}
+
+h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: var(--primary-color);
+}
+
+h3 {
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  color: var(--primary-color);
+}
+
+.highlight {
+  color: var(--secondary-color);
+}
+
+/* Custom Text Styles */
+.text-greeting {
+  color: var(--greeting-color);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  font-size: 4rem; /* Increased font size for "Hello, I am" */
+}
+
+.name {
+  color: var(--name-color);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  font-size: 3rem; /* Increased font size for name */
+  margin: 0; /* Removed margin around name */
+}
+
+.profession-title {
+  color: var(--profession-color);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  margin-top: 1.5rem; /* Margin above profession title */
+  margin-bottom: 1.5rem; /* Margin below profession title */
+}
+
+/* Page Container */
+.page-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.container-fluid {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Background Video */
+#bg-video {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  transform: translate(-50%, -50%);
+  z-index: -1;
+}
+
+/* Navigation */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60px; /* Adjust height as needed */
+  display: flex;
+  justify-content: center; /* Center "FJMM" horizontally */
+  align-items: center; /* Center vertically */
+  background-color: rgba(0, 0, 0, 0.8); /* Dark background with transparency */
+  z-index: 1000;
+}
+
+.navbar-brand {
+  font-size: 2.4rem;
+  font-family: 'Montserrat', sans-serif;
+  color: var(--primary-color);
+}
+
+/* Hamburger Menu Button */
+.menu-icon {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  width: 30px;
+  height: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.menu-icon div {
+  width: 100%;
+  height: 4px;
+  background-color: var(--text-color);
+  transition: all 0.3s ease;
+}
+
+.menu-icon.open div:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.menu-icon.open div:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-icon.open div:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+.nav-links {
+  list-style: none;
+  position: fixed;
+  top: 60px;
+  right: -250px;
+  width: 200px;
+  background-color: rgba(0, 0, 0, 0.9); /* Dark background */
+  border-radius: 5px 0 0 5px;
+  transition: right 0.3s ease;
+  z-index: 999;
+  padding: 20px 0;
+}
+
+.nav-links.open {
+  right: 0;
+}
+
+.nav-links li {
+  margin: 20px 0;
+  text-align: center; /* Center the items */
+  padding: 0;
+}
+
+.nav-links li a {
+  color: var(--text-color);
+  text-decoration: none;
+  font-size: 1.2rem;
+}
+
+.nav-links li a:hover {
+  color: var(--primary-color);
+}
+
+/* Main Content Padding */
+.tm-content-container {
+  padding-top: 80px; /* Space for fixed header */
+}
+
+/* Introduction Section */
+.intro-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 150px 30px; /* Increased top and bottom padding */
+  position: relative;
+}
+
+.intro-content {
+  max-width: 800px;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.intro-content h2 {
+  font-size: 4rem; /* Increased font size */
+  margin-bottom: 1rem;
+}
+
+.intro-content h3 {
+  font-size: 2rem; /* Adjusted font size */
+  margin-top: 1.5rem; /* Top margin */
+  margin-bottom: 1.5rem; /* Bottom margin */
+}
+
+.intro-paragraph {
+  margin: 0; /* Removed margins between paragraphs */
+}
+
+.intro-paragraph.first,
+.intro-paragraph.second {
+  font-size: 1.6rem; /* Same font size for both paragraphs */
+}
+
+/* Buttons */
+.btn {
+  font-size: 1.3rem;
+  padding: 13px 23px;
+  text-transform: uppercase;
+  background-color: var(--primary-color);
+  color: var(--text-color);
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.btn:hover {
+  background-color: var(--secondary-color);
+  color: #ffffff;
+}
+
+/* Sections */
+section {
+  padding: 150px 0; /* Increased top and bottom padding */
+}
+
+section + section {
+  margin-top: 100px; /* Increased top margin between sections */
+}
+
+.tm-bg-dark {
+  background-color: rgba(0, 0, 0, 0.7); /* Dark background */
+  padding: 40px;
+  margin: 20px 0;
+  border-radius: 10px;
+}
+
+/* Projects Gallery */
+.gallery-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.gallery-slider {
+  margin: 0 auto;
+}
+
+/* Slick Slider Overrides */
+.gallery-slider .item {
+  position: relative;
+  margin: 15px;
+  overflow: hidden;
+  width: 100%; /* Ensure each slide takes 100% width */
+}
+
+.gallery-slider .item img {
+  width: 100%;
+  height: 350px; /* Increased height for better visibility */
+  object-fit: cover; /* Maintain aspect ratio and crop if necessary */
+  transition: transform 0.5s;
+}
+
+.gallery-slider .item:hover img {
+  transform: scale(1.05);
+}
+
+.gallery-slider .effect-julia figcaption {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  color: #ffffff;
+  opacity: 0;
+  transition: opacity 0.5s;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  text-align: center;
+}
+
+.gallery-slider .item:hover figcaption {
+  opacity: 1;
+}
+
+.gallery-slider h3 {
+  font-size: 1.4rem;
+  margin-bottom: 0.5rem;
+}
+
+.gallery-slider p {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+.gallery-slider a {
+  color: var(--text-color);
+  text-decoration: none;
+  font-weight: bold;
+  background-color: var(--primary-color);
+  padding: 8px 16px;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.gallery-slider a:hover {
+  background-color: var(--secondary-color);
+}
+
+/* Navigation Dots */
+.slick-dots {
+  position: absolute;
+  bottom: -30px; /* Adjusted to avoid overlap */
+  list-style: none;
+  display: block;
+  text-align: center;
+  width: 100%;
+}
+
+.slick-dots li {
+  display: inline-block;
+  margin: 0 5px;
+}
+
+.slick-dots li button {
+  border: none;
+  background: transparent;
+  color: transparent;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.slick-dots li button:before {
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 900;
+  font-size: 12px;
+  content: '\f111';
+  color: var(--text-color);
+  opacity: 0.5;
+}
+
+.slick-dots li.slick-active button:before {
+  color: var(--primary-color);
+  opacity: 1;
+}
+
+/* Navigation Arrows */
+.slick-prev, .slick-next {
+  background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  border: none;
+  color: var(--text-color);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.slick-prev {
+  left: -50px; /* Adjust position as needed */
+}
+
+.slick-next {
+  right: -50px; /* Adjust position as needed */
+}
+
+.slick-prev:hover, .slick-next:hover {
+  background: var(--secondary-color);
+}
+
+/* Ensure arrows are visible on small screens */
+@media (max-width: 768px) {
+  .slick-prev {
+    left: -30px;
+  }
+
+  .slick-next {
+    right: -30px;
+  }
+}
+
+/* About Me Section */
+.about-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+}
+
+.about-image {
+  margin-bottom: 20px;
+}
+
+.about-image img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%; /* Circular image */
+  border: 3px solid var(--primary-color); /* Add border */
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3); /* Subtle shadow */
+  object-fit: cover; /* Fit content within the circle */
+  display: block;
+  margin: 0 auto; /* Center the image */
+}
+
+.about-content {
+  font-size: 1.8rem; /* Further increased font size for About Me paragraphs */
+  line-height: 1.6;
+  margin: 20px auto 0 auto; /* Added top margin */
+  max-width: 600px;
+}
+
+.about-content h2 {
+  color: var(--primary-color);
+}
+
+.about-content p {
+  color: var(--text-color);
+  margin-bottom: 20px; /* Added space between paragraphs */
+}
+
+/* Responsive Styles for Mobile Devices */
+@media (max-width: 768px) {
+  .about-container {
+    display: flex;
+    flex-direction: column; /* Change to column on mobile */
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+  }
+
+  .about-image img {
+    width: 120px; /* Reduce size on mobile */
+    height: 120px;
+  }
+
+  .about-content {
+    margin-top: 20px;
+  }
+}
+
+/* Adjustments for Medium and Large Screens */
+@media (min-width: 769px) {
+  .about-container {
+    display: flex;
+    flex-direction: row; /* Row layout on larger screens */
+    align-items: center;
+    text-align: left;
+    padding: 30px;
+  }
+
+  .about-image {
+    flex: 1; /* Assign 1 part of the row to the image */
+    margin: 0;
+    text-align: center;
+  }
+
+  .about-image img {
+    width: 200px; /* Larger image on big screens */
+    height: 200px;
+  }
+
+  .about-content {
+    flex: 2; /* Assign 2 parts of the row to the text */
+    font-size: 1.8rem; /* Further increased text size */
+    line-height: 1.7; /* Improved line spacing */
+    margin-left: 40px;
+  }
+}
+
+/* Back to Top Arrow */
+#back-to-top {
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  width: 50px;
+  height: 50px;
+  background-color: var(--primary-color);
+  color: var(--text-color);
+  border-radius: 50%;
+  text-align: center;
+  line-height: 50px;
+  font-size: 24px;
+  z-index: 999;
+  cursor: pointer;
+  transition: opacity 0.3s, background-color 0.3s;
+  opacity: 0; /* Hidden by default */
+  visibility: hidden;
+}
+
+#back-to-top.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+#back-to-top:hover {
+  background-color: var(--secondary-color);
+}
+
+/* Contact Section */
+.contact-info {
+  margin-top: 20px;
+}
+
+.contact-item {
+  margin-bottom: 15px;
+  font-size: 1.2rem;
+}
+
+.contact-item i {
+  margin-right: 10px;
+  color: var(--primary-color);
+}
+
+.contact-item a {
+  color: var(--text-color);
+}
+
+.contact-item a:hover {
+  color: var(--primary-color);
+}
+
+/* CV Download Button */
+.cv-download {
+  margin-top: 30px;
+}
+
+.cv-download .btn {
+  display: inline-block;
+  font-size: 1.2rem;
+}
+
+/* Specific for Mobile Devices */
+@media (max-width: 768px) {
+  #about-me h2 {
+    font-size: 1.5rem; /* Reduced for mobile */
+    text-align: center;
+  }
+
+  section {
+    padding: 100px 15px; /* Adjusted spacing for mobile */
+  }
+}
+
+/* Increase Font Size on Large Screens */
+@media (min-width: 1024px) {
+  body {
+    font-size: 20px;
+  }
+
+  h2 {
+    font-size: 2.5rem;
+  }
+
+  h3 {
+    font-size: 2rem;
+  }
+
+  p {
+    font-size: 1.2rem;
+  }
+}

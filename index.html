@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>FJMM</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Links to Fonts and CSS -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css"/>
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css"/>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+</head>
+<body>
+  <!-- Background Video -->
+  <video autoplay muted loop id="bg-video">
+    <source src="video/fondo-inicio.mp4" type="video/mp4">
+  </video>
+  <div class="page-container">
+    <!-- Navigation -->
+    <div class="container-fluid">
+      <nav class="navbar" id="tm-nav">
+        <a href="#home" class="navbar-brand">FJMM</a>
+        <div class="menu-icon" id="menu-icon">
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+        <ul class="nav-links" id="nav-links">
+          <li class="nav-item"><a href="#home">Home</a></li>
+          <li class="nav-item"><a href="#projects">Projects</a></li>
+          <li class="nav-item"><a href="#about-me">About Me</a></li>
+          <li class="nav-item"><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container-fluid tm-content-container">
+      <!-- Home Section -->
+      <section id="home">
+        <div class="intro-container">
+          <div class="intro-content">
+            <h2>
+              <span class="text-greeting">Hello, I am</span>
+              <span class="name">Francisco Javier Martínez Márquez</span>
+            </h2>
+            <h3 class="profession-title">Data Scientist & Analyst</h3>
+            <p class="intro-paragraph first">Passionate about turning data into strategic solutions.</p>
+            <p class="intro-paragraph second">My goal is to help organizations make informed decisions based on data.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Projects Section -->
+      <section id="projects">
+        <div class="gallery-container">
+          <h2>Projects</h2>
+          <div class="gallery-slider">
+            <!-- Project 1 -->
+            <figure class="effect-julia item">
+              <img src="img/imagen-churn.png" alt="Customer Churn Prediction" loading="lazy">
+              <figcaption>
+                <div>
+                  <h3>Customer Churn Prediction</h3>
+                  <p>Customer churn prediction model using ML and DL.</p>
+                </div>
+                <a href="proyectos/customer-churn/customer-churn-1.html" target="_blank">View Project</a>
+              </figcaption>
+            </figure>
+            <!-- Project 2 -->
+            <figure class="effect-julia item">
+              <img src="img/bomba-de-agua-industrial.jpg" alt="Predict Water Pumps Faulty" loading="lazy">
+              <figcaption>
+                <div>
+                  <h3>Predict Water Pumps Faulty</h3>
+                  <p>Implementation of ML models to analyze which water pump is functioning, needs repair, or is non-functional.</p>
+                </div>
+                <a href="proyectos/predict-water-pumps-faulty/predict-water-pumps-faulty.html" target="_blank">View Project</a>
+              </figcaption>
+            </figure>
+            <!-- Project 3 -->
+            <figure class="effect-julia item">
+              <img src="img/eda.jpg" alt="Exploratory Data Analysis" loading="lazy">
+              <figcaption>
+                <div>
+                  <h3>Exploratory Data Analysis</h3>
+                  <p>Comprehensive EDA for dataset insights and visualization.</p>
+                </div>
+                <a href="proyectos/eda/eda.html" target="_blank">View Project</a>
+              </figcaption>
+            </figure>
+            <!-- Project 4 -->
+            <figure class="effect-julia item">
+              <img src="img/imagen-visualizacion-datos.png" alt="Data Visualization" loading="lazy">
+              <figcaption>
+                <div>
+                  <h3>Data Visualization</h3>
+                  <p>Creation of interactive dashboards for sales analysis using Tableau.</p>
+                </div>
+                <a href="proyectos/data-visualization.html" target="_blank">View Project</a>
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <!-- About Me Section -->
+      <section id="about-me">
+        <div class="about-container">
+          <div class="about-image">
+            <img src="img/mi-foto.jpg" alt="Francisco Javier Martínez Márquez" loading="lazy">
+          </div>
+          <div class="about-content">
+            <h2>About Me</h2>
+            <p class="about-paragraph">I am a Data Science professional with experience in predictive analytics, machine learning, and data visualization.</p>
+            <p class="about-paragraph">I have skills in Python, SQL, NoSQL, Tableau, and machine learning tools such as scikit-learn and TensorFlow.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact Section -->
+      <section id="contact">
+        <div class="tm-bg-dark content-pad">
+          <h2>Contact</h2>
+          <p>If you wish to get in touch with me, you can send me an email, call me, or follow me on my social networks.</p>
+          <div class="contact-info">
+            <div class="contact-item">
+              <i class="fas fa-envelope"></i>
+              <a href="mailto:franmartinez721@gmail.com">franmartinez721@gmail.com</a>
+            </div>
+            <div class="contact-item">
+              <i class="fas fa-phone"></i>
+              <a href="tel:+34722646741">+34 722 646 741</a>
+            </div>
+            <div class="contact-item">
+              <i class="fab fa-linkedin"></i>
+              <a href="https://www.linkedin.com/in/francisco-javier-martinez-marquez-01b8361a5" target="_blank">LinkedIn</a>
+            </div>
+            <div class="contact-item">
+              <i class="fab fa-github"></i>
+              <a href="https://github.com/Franbuqui" target="_blank">GitHub</a>
+            </div>
+          </div>
+          <div class="cv-download">
+            <a href="docs/Francisco_Martinez_CV.pdf" target="_blank" class="btn">Download CV</a>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <!-- Back to Top Arrow -->
+  <a href="#" id="back-to-top"><i class="fas fa-chevron-up"></i></a>
+
+  <!-- Preloader -->
+  <div id="loader-wrapper">
+    <div id="loader"></div>
+    <div class="loader-section section-left"></div>
+    <div class="loader-section section-right"></div>
+  </div>
+
+  <!-- JavaScript Files -->
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+  <script src="js/script.js"></script>
+</body>
+</html>
