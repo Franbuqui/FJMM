@@ -447,7 +447,7 @@ section + section {
 }
 
 .about-content {
-  font-size: 1.8rem; /* Further increased font size for About Me paragraphs */
+  font-size: 2rem; /* Increased font size for About Me paragraphs */
   line-height: 1.6;
   margin: 20px auto 0 auto; /* Added top margin */
   max-width: 600px;
@@ -455,60 +455,13 @@ section + section {
 
 .about-content h2 {
   color: var(--primary-color);
+  font-size: 2.5rem; /* Increased font size for About Me heading */
 }
 
 .about-content p {
   color: var(--text-color);
   margin-bottom: 20px; /* Added space between paragraphs */
-}
-
-/* Responsive Styles for Mobile Devices */
-@media (max-width: 768px) {
-  .about-container {
-    display: flex;
-    flex-direction: column; /* Change to column on mobile */
-    align-items: center;
-    text-align: center;
-    padding: 20px;
-  }
-
-  .about-image img {
-    width: 120px; /* Reduce size on mobile */
-    height: 120px;
-  }
-
-  .about-content {
-    margin-top: 20px;
-  }
-}
-
-/* Adjustments for Medium and Large Screens */
-@media (min-width: 769px) {
-  .about-container {
-    display: flex;
-    flex-direction: row; /* Row layout on larger screens */
-    align-items: center;
-    text-align: left;
-    padding: 30px;
-  }
-
-  .about-image {
-    flex: 1; /* Assign 1 part of the row to the image */
-    margin: 0;
-    text-align: center;
-  }
-
-  .about-image img {
-    width: 200px; /* Larger image on big screens */
-    height: 200px;
-  }
-
-  .about-content {
-    flex: 2; /* Assign 2 parts of the row to the text */
-    font-size: 1.8rem; /* Further increased text size */
-    line-height: 1.7; /* Improved line spacing */
-    margin-left: 40px;
-  }
+  font-size: 1.5rem; /* Increased font size for paragraphs */
 }
 
 /* Back to Top Arrow */
@@ -573,19 +526,152 @@ section + section {
   font-size: 1.2rem;
 }
 
-/* Specific for Mobile Devices */
+/* Responsive Styles para Dispositivos Móviles */
 @media (max-width: 768px) {
-  #about-me h2 {
-    font-size: 1.5rem; /* Reduced for mobile */
-    text-align: center;
+  /* General Ajustes */
+  body {
+    font-size: 16px; /* Reducir tamaño de fuente general */
   }
 
+  .text-greeting {
+    font-size: 2.5rem; /* Reducir tamaño de fuente */
+  }
+
+  .name {
+    font-size: 2rem; /* Reducir tamaño de fuente */
+  }
+
+  .profession-title {
+    font-size: 1.5rem; /* Reducir tamaño de fuente */
+  }
+
+  /* Introducción */
+  .intro-container {
+    padding: 80px 20px; /* Reducir padding */
+  }
+
+  .intro-content h2 {
+    font-size: 2.5rem; /* Reducir tamaño de fuente */
+  }
+
+  .intro-content h3 {
+    font-size: 1.5rem; /* Reducir tamaño de fuente */
+  }
+
+  /* Galería */
+  .gallery-slider .item img {
+    max-height: 200px; /* Reducir altura de imágenes */
+  }
+
+  .gallery-slider h3 {
+    font-size: 1.2rem;
+  }
+
+  .gallery-slider p {
+    font-size: 0.9rem;
+  }
+
+  /* Botones */
+  .btn {
+    font-size: 1.1rem;
+    padding: 8px 16px;
+  }
+
+  /* Navbar */
+  .navbar-brand {
+    font-size: 1.8rem; /* Reducir tamaño de fuente */
+  }
+
+  /* About Me */
+  .about-container {
+    display: flex;
+    flex-direction: column; /* Cambiar a columna en móvil */
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+  }
+
+  .about-image img {
+    width: 120px; /* Reducir tamaño de imagen */
+    height: 120px;
+  }
+
+  .about-content {
+    font-size: 1.8rem; /* Reducir tamaño de fuente si es necesario */
+    margin-top: 20px;
+  }
+
+  /* Contact Section */
+  .tm-bg-dark.content-pad {
+    padding: 20px; /* Reducir padding */
+  }
+
+  .contact-info {
+    margin-top: 30px; /* Aumentar margen superior */
+  }
+
+  .contact-item {
+    margin-bottom: 20px; /* Aumentar margen inferior */
+    font-size: 1.1rem; /* Reducir tamaño de fuente */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Alinear elementos a la izquierda */
+  }
+
+  .contact-item i {
+    margin-right: 0; /* Quitar margen derecho */
+    margin-bottom: 5px; /* Añadir margen inferior */
+  }
+
+  /* CV Download Button */
+  .cv-download .btn {
+    font-size: 1rem; /* Reducir tamaño de fuente */
+    padding: 6px 12px; /* Reducir padding */
+  }
+
+  /* Ajustes Específicos para la Sección de Contacto */
+  #contact-section {
+    padding: 40px 20px; /* Reducir padding */
+  }
+
+  /* Ajustes para la Sección de Proyectos */
+  #projects-section {
+    padding-top: 60px; /* Reducir padding superior */
+  }
+
+  .gallery-container {
+    padding: 0 10px; /* Añadir padding horizontal */
+  }
+
+  /* Secciones */
   section {
-    padding: 100px 15px; /* Adjusted spacing for mobile */
+    padding: 100px 15px; /* Ajustar padding */
+  }
+
+  section + section {
+    margin-top: 50px; /* Ajustar margen superior */
+  }
+
+  .tm-bg-dark {
+    padding: 20px;
+    margin: 10px 0;
+  }
+
+  /* Aumentar Tamaño de Fuente en la Sección "About Me" para Móviles */
+  .about-content {
+    font-size: 1.8rem; /* Aumentar tamaño de fuente */
+  }
+
+  .about-content h2 {
+    font-size: 2rem; /* Aumentar tamaño de fuente del encabezado */
+  }
+
+  .about-content p {
+    font-size: 1.3rem; /* Aumentar tamaño de fuente de los párrafos */
   }
 }
 
-/* Increase Font Size on Large Screens */
+/* Ajustes para Pantallas Grandes */
 @media (min-width: 1024px) {
   body {
     font-size: 20px;
@@ -601,5 +687,18 @@ section + section {
 
   p {
     font-size: 1.2rem;
+  }
+
+  /* Aumentar Tamaño de Fuente en la Sección "About Me" para Pantallas Grandes */
+  .about-content {
+    font-size: 2rem; /* Aumentar tamaño de fuente */
+  }
+
+  .about-content h2 {
+    font-size: 2.8rem; /* Aumentar tamaño de fuente del encabezado */
+  }
+
+  .about-content p {
+    font-size: 1.5rem; /* Aumentar tamaño de fuente de los párrafos */
   }
 }
