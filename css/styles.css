@@ -5,7 +5,7 @@
   box-sizing: border-box;
 }
 
-/* Color Variables */
+/* Variables de Color */
 :root {
   --primary-color: #00BFFF; /* DeepSkyBlue */
   --secondary-color: #FF4500; /* OrangeRed */
@@ -17,19 +17,19 @@
   --profession-color: #FF4500; /* OrangeRed */
 }
 
-/* Global Styles */
+/* Estilos Globales */
 html, body, .page-container {
   height: 100%;
 }
 
 body {
   font-family: 'Open Sans', sans-serif;
-  font-size: 18px;
+  font-size: 1rem; /* 16px base */
   font-weight: 300;
   color: var(--text-color);
   line-height: 1.5;
   background-color: var(--background-color);
-  overflow-x: hidden; /* Prevent horizontal scrollbar */
+  overflow-x: hidden; /* Prevenir scrollbar horizontal */
 }
 
 a {
@@ -66,28 +66,28 @@ h3 {
   color: var(--secondary-color);
 }
 
-/* Custom Text Styles */
+/* Estilos de Texto Personalizados */
 .text-greeting {
   color: var(--greeting-color);
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-  font-size: 4rem; /* Increased font size for "Hello, I am" */
+  font-size: 4rem; /* Tamaño aumentado para "Hola, soy" */
 }
 
 .name {
   color: var(--name-color);
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-  font-size: 3rem; /* Increased font size for name */
-  margin: 0; /* Removed margin around name */
+  font-size: 3rem; /* Tamaño aumentado para el nombre */
+  margin: 0; /* Quitar margen alrededor del nombre */
 }
 
 .profession-title {
   color: var(--profession-color);
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-  margin-top: 1.5rem; /* Margin above profession title */
-  margin-bottom: 1.5rem; /* Margin below profession title */
+  margin-top: 1.5rem; /* Margen arriba del título de profesión */
+  margin-bottom: 1.5rem; /* Margen abajo del título de profesión */
 }
 
-/* Page Container */
+/* Contenedor de la Página */
 .page-container {
   display: flex;
   flex-direction: column;
@@ -96,32 +96,35 @@ h3 {
 
 .container-fluid {
   max-width: 1200px;
+  width: 100%;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 1.25rem; /* 20px */
 }
 
-/* Background Video */
+/* Video de Fondo */
 #bg-video {
   position: fixed;
   left: 50%;
   top: 50%;
-  min-width: 100%;
+  width: 100%;
+  height: auto;
   min-height: 100%;
   transform: translate(-50%, -50%);
   z-index: -1;
+  object-fit: cover;
 }
 
-/* Navigation */
+/* Sección de Navegación */
 .navbar {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  height: 60px; /* Adjust height as needed */
+  height: 60px; /* Ajustar altura según necesidad */
   display: flex;
-  justify-content: center; /* Center "FJMM" horizontally */
-  align-items: center; /* Center vertically */
-  background-color: rgba(0, 0, 0, 0.8); /* Dark background with transparency */
+  justify-content: center; /* Centrar "FJMM" horizontalmente */
+  align-items: center; /* Centrar verticalmente */
+  background-color: rgba(0, 0, 0, 0.8); /* Fondo oscuro con transparencia */
   z-index: 1000;
 }
 
@@ -131,7 +134,7 @@ h3 {
   color: var(--primary-color);
 }
 
-/* Hamburger Menu Button */
+/* Botón de Menú Hamburguesa */
 .menu-icon {
   position: absolute;
   top: 15px;
@@ -167,9 +170,9 @@ h3 {
   list-style: none;
   position: fixed;
   top: 60px;
-  right: -250px;
+  right: -200px;
   width: 200px;
-  background-color: rgba(0, 0, 0, 0.9); /* Dark background */
+  background-color: rgba(0, 0, 0, 0.9); /* Fondo oscuro */
   border-radius: 5px 0 0 5px;
   transition: right 0.3s ease;
   z-index: 999;
@@ -182,7 +185,7 @@ h3 {
 
 .nav-links li {
   margin: 20px 0;
-  text-align: center; /* Center the items */
+  text-align: center; /* Centrar los items */
   padding: 0;
 }
 
@@ -190,23 +193,25 @@ h3 {
   color: var(--text-color);
   text-decoration: none;
   font-size: 1.2rem;
+  padding: 10px 20px; /* Aumentar padding para facilitar el toque */
+  display: block;
 }
 
 .nav-links li a:hover {
   color: var(--primary-color);
 }
 
-/* Main Content Padding */
+/* Padding del Contenido Principal */
 .tm-content-container {
-  padding-top: 80px; /* Space for fixed header */
+  padding-top: 80px; /* Espacio para el header fijo */
 }
 
-/* Introduction Section */
+/* Sección de Introducción */
 .intro-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 150px 30px; /* Increased top and bottom padding */
+  padding: 150px 30px; /* Aumentar padding superior e inferior */
   position: relative;
 }
 
@@ -217,26 +222,26 @@ h3 {
 }
 
 .intro-content h2 {
-  font-size: 4rem; /* Increased font size */
+  font-size: 4rem; /* Tamaño de fuente aumentado */
   margin-bottom: 1rem;
 }
 
 .intro-content h3 {
-  font-size: 2rem; /* Adjusted font size */
-  margin-top: 1.5rem; /* Top margin */
-  margin-bottom: 1.5rem; /* Bottom margin */
+  font-size: 2rem; /* Tamaño de fuente ajustado */
+  margin-top: 1.5rem; /* Margen superior */
+  margin-bottom: 1.5rem; /* Margen inferior */
 }
 
 .intro-paragraph {
-  margin: 0; /* Removed margins between paragraphs */
+  margin: 0; /* Quitar márgenes entre párrafos */
 }
 
 .intro-paragraph.first,
 .intro-paragraph.second {
-  font-size: 1.6rem; /* Same font size for both paragraphs */
+  font-size: 1.6rem; /* Mismo tamaño de fuente para ambos párrafos */
 }
 
-/* Buttons */
+/* Botones */
 .btn {
   font-size: 1.3rem;
   padding: 13px 23px;
@@ -253,23 +258,23 @@ h3 {
   color: #ffffff;
 }
 
-/* Sections */
+/* Secciones */
 section {
-  padding: 150px 0; /* Increased top and bottom padding */
+  padding: 150px 0; /* Aumentar padding superior e inferior */
 }
 
 section + section {
-  margin-top: 100px; /* Increased top margin between sections */
+  margin-top: 100px; /* Aumentar margen superior entre secciones */
 }
 
 .tm-bg-dark {
-  background-color: rgba(0, 0, 0, 0.7); /* Dark background */
+  background-color: rgba(0, 0, 0, 0.7); /* Fondo oscuro */
   padding: 40px;
   margin: 20px 0;
   border-radius: 10px;
 }
 
-/* Projects Gallery */
+/* Galería de Proyectos */
 .gallery-container {
   max-width: 1200px;
   margin: 0 auto;
@@ -277,7 +282,7 @@ section + section {
 }
 
 .gallery-slider {
-  margin: 0 auto;
+  width: 100%;
 }
 
 /* Slick Slider Overrides */
@@ -285,13 +290,13 @@ section + section {
   position: relative;
   margin: 15px;
   overflow: hidden;
-  width: 100%; /* Ensure each slide takes 100% width */
+  width: 100%; /* Asegurar que cada slide tome el 100% del ancho */
 }
 
 .gallery-slider .item img {
   width: 100%;
-  height: 350px; /* Increased height for better visibility */
-  object-fit: cover; /* Maintain aspect ratio and crop if necessary */
+  height: 350px; /* Mantener altura fija en pantallas grandes */
+  object-fit: cover; /* Mantener relación de aspecto y recortar si es necesario */
   transition: transform 0.5s;
 }
 
@@ -315,6 +320,7 @@ section + section {
   align-items: center;
   padding: 20px;
   text-align: center;
+  overflow: auto; /* Permitir scroll si el contenido excede */
 }
 
 .gallery-slider .item:hover figcaption {
@@ -345,10 +351,10 @@ section + section {
   background-color: var(--secondary-color);
 }
 
-/* Navigation Dots */
+/* Puntos de Navegación */
 .slick-dots {
   position: absolute;
-  bottom: -30px; /* Adjusted to avoid overlap */
+  bottom: -30px; /* Ajustado para evitar superposición */
   list-style: none;
   display: block;
   text-align: center;
@@ -382,9 +388,9 @@ section + section {
   opacity: 1;
 }
 
-/* Navigation Arrows */
+/* Flechas de Navegación */
 .slick-prev, .slick-next {
-  background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  background: rgba(0, 0, 0, 0.5); /* Fondo semi-transparente */
   border: none;
   color: var(--text-color);
   width: 40px;
@@ -401,34 +407,24 @@ section + section {
 }
 
 .slick-prev {
-  left: -50px; /* Adjust position as needed */
+  left: -50px; /* Ajustar posición según necesidad */
 }
 
 .slick-next {
-  right: -50px; /* Adjust position as needed */
+  right: -50px; /* Ajustar posición según necesidad */
 }
 
 .slick-prev:hover, .slick-next:hover {
   background: var(--secondary-color);
 }
 
-/* Ensure arrows are visible on small screens */
-@media (max-width: 768px) {
-  .slick-prev {
-    left: -30px;
-  }
-
-  .slick-next {
-    right: -30px;
-  }
-}
-
-/* About Me Section */
+/* Sección Sobre Mí */
 .about-container {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 20px;
+  display: flex;
+  flex-direction: column; /* En móviles */
+  align-items: center;
   text-align: center;
+  padding: 20px;
 }
 
 .about-image {
@@ -438,33 +434,33 @@ section + section {
 .about-image img {
   width: 150px;
   height: 150px;
-  border-radius: 50%; /* Circular image */
-  border: 3px solid var(--primary-color); /* Add border */
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3); /* Subtle shadow */
-  object-fit: cover; /* Fit content within the circle */
+  border-radius: 50%; /* Imagen circular */
+  border: 3px solid var(--primary-color); /* Añadir borde */
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3); /* Sombra sutil */
+  object-fit: cover; /* Ajustar contenido dentro del círculo */
   display: block;
-  margin: 0 auto; /* Center the image */
+  margin: 0 auto; /* Centrar la imagen */
 }
 
 .about-content {
-  font-size: 2rem; /* Increased font size for About Me paragraphs */
+  font-size: 1.5rem; /* Tamaño de fuente ajustado */
   line-height: 1.6;
-  margin: 20px auto 0 auto; /* Added top margin */
+  margin: 20px auto 0 auto; /* Añadir margen superior */
   max-width: 600px;
 }
 
 .about-content h2 {
   color: var(--primary-color);
-  font-size: 2.5rem; /* Increased font size for About Me heading */
+  font-size: 2.5rem; /* Tamaño de fuente aumentado para el encabezado */
 }
 
 .about-content p {
   color: var(--text-color);
-  margin-bottom: 20px; /* Added space between paragraphs */
-  font-size: 1.5rem; /* Increased font size for paragraphs */
+  margin-bottom: 20px; /* Añadir espacio entre párrafos */
+  font-size: 1.2rem; /* Tamaño de fuente ajustado para párrafos */
 }
 
-/* Back to Top Arrow */
+/* Flecha para Volver al Inicio */
 #back-to-top {
   position: fixed;
   bottom: 40px;
@@ -480,7 +476,7 @@ section + section {
   z-index: 999;
   cursor: pointer;
   transition: opacity 0.3s, background-color 0.3s;
-  opacity: 0; /* Hidden by default */
+  opacity: 0; /* Oculto por defecto */
   visibility: hidden;
 }
 
@@ -493,7 +489,7 @@ section + section {
   background-color: var(--secondary-color);
 }
 
-/* Contact Section */
+/* Sección de Contacto */
 .contact-info {
   margin-top: 20px;
 }
@@ -501,11 +497,15 @@ section + section {
 .contact-item {
   margin-bottom: 15px;
   font-size: 1.2rem;
+  display: flex; /* Utilizar Flexbox para alinear icono y texto */
+  align-items: center;
 }
 
 .contact-item i {
   margin-right: 10px;
   color: var(--primary-color);
+  min-width: 24px; /* Asegurar espacio uniforme para los iconos */
+  text-align: center;
 }
 
 .contact-item a {
@@ -516,7 +516,6 @@ section + section {
   color: var(--primary-color);
 }
 
-/* CV Download Button */
 .cv-download {
   margin-top: 30px;
 }
@@ -526,15 +525,15 @@ section + section {
   font-size: 1.2rem;
 }
 
-/* Responsive Styles para Dispositivos Móviles */
+/* Estilos Responsivos para Dispositivos Móviles */
 @media (max-width: 768px) {
-  /* General Ajustes */
+  /* Ajustes Generales */
   body {
-    font-size: 16px; /* Reducir tamaño de fuente general */
+    font-size: 0.875rem; /* 14px */
   }
 
   .text-greeting {
-    font-size: 2.5rem; /* Reducir tamaño de fuente */
+    font-size: 1.5rem; /* Reducir tamaño de fuente */
   }
 
   .name {
@@ -547,33 +546,43 @@ section + section {
 
   /* Introducción */
   .intro-container {
-    padding: 80px 20px; /* Reducir padding */
+    padding: 100px 20px; /* Reducir padding */
   }
 
   .intro-content h2 {
-    font-size: 2.5rem; /* Reducir tamaño de fuente */
+    font-size: 1.5rem; /* Reducir tamaño de fuente */
   }
 
   .intro-content h3 {
-    font-size: 1.5rem; /* Reducir tamaño de fuente */
+    font-size: 1.2rem; /* Reducir tamaño de fuente */
+  }
+
+  .intro-paragraph.first,
+  .intro-paragraph.second {
+    font-size: 0.9rem; /* Reducir tamaño de fuente */
   }
 
   /* Galería */
   .gallery-slider .item img {
-    max-height: 200px; /* Reducir altura de imágenes */
+    height: 200px; /* Eliminar altura fija */
+    object-fit: cover; /* Limitar altura máxima */
+  }
+
+  .gallery-slider .effect-julia figcaption {
+    padding: 15px;
   }
 
   .gallery-slider h3 {
-    font-size: 1.2rem;
+    font-size: 1rem; /* Tamaño de fuente consistente */
   }
-
+  
   .gallery-slider p {
-    font-size: 0.9rem;
+    font-size: 0.875rem; /* Tamaño de fuente consistente */
   }
 
   /* Botones */
   .btn {
-    font-size: 1.1rem;
+    font-size: 1rem;
     padding: 8px 16px;
   }
 
@@ -582,7 +591,7 @@ section + section {
     font-size: 1.8rem; /* Reducir tamaño de fuente */
   }
 
-  /* About Me */
+  /* Sección Sobre Mí */
   .about-container {
     display: flex;
     flex-direction: column; /* Cambiar a columna en móvil */
@@ -592,38 +601,36 @@ section + section {
   }
 
   .about-image img {
-    width: 120px; /* Reducir tamaño de imagen */
-    height: 120px;
+    width: 200px; /* Reducir tamaño de imagen */
+    height: 200px;
   }
 
   .about-content {
-    font-size: 1.8rem; /* Reducir tamaño de fuente si es necesario */
+    font-size: 1.2rem; /* Reducir tamaño de fuente */
     margin-top: 20px;
   }
 
-  /* Contact Section */
+  /* Sección de Contacto */
   .tm-bg-dark.content-pad {
     padding: 20px; /* Reducir padding */
   }
 
   .contact-info {
-    margin-top: 30px; /* Aumentar margen superior */
+    margin-top: 30px;
   }
 
   .contact-item {
-    margin-bottom: 20px; /* Aumentar margen inferior */
-    font-size: 1.1rem; /* Reducir tamaño de fuente */
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start; /* Alinear elementos a la izquierda */
+    margin-bottom: 20px;
+    font-size: 1rem;
+    flex-direction: row; /* Mantener icono y texto en fila */
   }
 
   .contact-item i {
-    margin-right: 0; /* Quitar margen derecho */
-    margin-bottom: 5px; /* Añadir margen inferior */
+    margin-right: 10px; /* Asegurar margen entre icono y texto */
+    margin-bottom: 0; /* Eliminar margen inferior */
   }
 
-  /* CV Download Button */
+  /* Botón de Descarga de CV */
   .cv-download .btn {
     font-size: 1rem; /* Reducir tamaño de fuente */
     padding: 6px 12px; /* Reducir padding */
@@ -657,24 +664,76 @@ section + section {
     margin: 10px 0;
   }
 
-  /* Aumentar Tamaño de Fuente en la Sección "About Me" para Móviles */
-  .about-content {
-    font-size: 1.8rem; /* Aumentar tamaño de fuente */
+  /* Ajustes en los figcaption para evitar corte de texto */
+  .gallery-slider .effect-julia figcaption {
+    padding: 15px;
   }
 
+  .gallery-slider h3 {
+    font-size: 1rem;
+  }
+
+  .gallery-slider p {
+    font-size: 0.875rem;
+  }
+
+  /* Ajustar tamaños en la sección Sobre Mí para evitar desproporción */
   .about-content h2 {
-    font-size: 2rem; /* Aumentar tamaño de fuente del encabezado */
+    font-size: 2rem; /* Ajustar tamaño del encabezado */
   }
 
   .about-content p {
-    font-size: 1.3rem; /* Aumentar tamaño de fuente de los párrafos */
+    font-size: 1.1rem; /* Ajustar tamaño de párrafos */
   }
+
+  /* Mostrar Flechas de Slick Slider en Móviles */
+  .slick-prev, .slick-next {
+    display: flex !important; /* Asegurar que las flechas sean visibles */
+  }
+  /* Ajustes para el menú de navegación en móviles */
+  .nav-links {
+    width: 120px; /* Reducir el ancho del menú (puedes ajustar este valor) */
+    right: -120px; /* Alinear fuera de la pantalla inicialmente */
+    transition: right 0.3s ease; /* Transición suave */
+    max-height: 100vh; /* Limitar la altura al 100% de la pantalla */
+    overflow-y: auto; /* Permitir desplazamiento si el contenido excede */
+  }
+
+  .nav-links.open {
+    right: 0;
+  }
+
+  .nav-links li {
+    margin: 10px 0; /* Reducir margen vertical entre elementos */
+  }
+
+  .nav-links li a {
+    padding: 8px 16px; /* Reducir padding para los enlaces */
+    font-size: 1rem; /* Ajustar tamaño de fuente si es necesario */
+  }
+
+  /* Opcional: Ajustar el tamaño del icono de menú si es muy grande */
+  .menu-icon {
+    width: 25px; /* Reducir el ancho del icono */
+    height: 20px; /* Reducir la altura del icono */
+  }
+
+  .menu-icon div {
+    height: 3px; /* Reducir la altura de las líneas del icono */
+  }
+
+  /* Asegurar que el contenido del menú no tenga padding adicional */
+  .nav-links {
+    padding: 10px 0; /* Reducir padding vertical del menú */
+  }
+
+  /* ...otros estilos... */
 }
 
 /* Ajustes para Pantallas Grandes */
 @media (min-width: 1024px) {
   body {
-    font-size: 20px;
+    font-size: 1.25rem; /* 20px */
   }
 
   h2 {
@@ -689,16 +748,134 @@ section + section {
     font-size: 1.2rem;
   }
 
-  /* Aumentar Tamaño de Fuente en la Sección "About Me" para Pantallas Grandes */
+  /* Aumentar Tamaño de Fuente en la Sección "Sobre Mí" para Pantallas Grandes */
   .about-content {
-    font-size: 2rem; /* Aumentar tamaño de fuente */
+    font-size: 1.5rem; /* Ajustar tamaño de fuente para equilibrio */
   }
 
   .about-content h2 {
-    font-size: 2.8rem; /* Aumentar tamaño de fuente del encabezado */
+    font-size: 2.8rem; /* Mantener tamaño de fuente del encabezado */
   }
 
   .about-content p {
-    font-size: 1.5rem; /* Aumentar tamaño de fuente de los párrafos */
+    font-size: 1.5rem; /* Mantener tamaño de fuente de los párrafos */
+  }
+
+  /* Sección de Introducción */
+  .intro-container {
+    padding: 150px 30px; /* Mantener padding para pantallas grandes */
+  }
+
+  .intro-content h2 {
+    font-size: 4rem; /* Tamaño de fuente aumentado */
+  }
+
+  .intro-content h3 {
+    font-size: 2rem; /* Tamaño de fuente ajustado */
+  }
+
+  .intro-paragraph.first,
+  .intro-paragraph.second {
+    font-size: 1.6rem; /* Mantener tamaño de fuente */
+  }
+
+  /* Galería */
+  .gallery-slider .item img {
+    height: 350px; /* Mantener altura fija en pantallas grandes */
+  }
+
+  /* Botones */
+  .btn {
+    font-size: 1.3rem;
+    padding: 13px 23px;
+  }
+
+  /* Navbar */
+  .navbar-brand {
+    font-size: 2.4rem; /* Mantener tamaño de fuente */
+  }
+
+  /* Aumentar tamaño de la foto en "Sobre Mí" para pantallas grandes */
+  .about-image img {
+    width: 400px; /* Aumentar tamaño de imagen */
+    height: 400px;
   }
 }
+
+/* Asegurar Imágenes y Videos Responsivos */
+img, video {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Preloader */
+#loader-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--background-color);
+  z-index: 10000;
+}
+
+#loader {
+  display: block;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 60px;
+  height: 60px;
+  margin: -30px 0 0 -30px;
+  border: 6px solid #f3f3f3;
+  border-top: 6px solid var(--primary-color);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+.loader-section {
+  position: fixed;
+  top: 0;
+  width: 51%;
+  height: 100%;
+  background-color: var(--background-color);
+  z-index: 10000;
+}
+
+.section-left {
+  left: 0;
+}
+
+.section-right {
+  right: 0;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Flexbox y Grid para Estructuras Flexibles */
+.about-container {
+  display: flex;
+  flex-direction: column; /* En móviles */
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+}
+
+@media (min-width: 769px) {
+  .about-container {
+    flex-direction: row; /* En pantallas grandes */
+    text-align: left;
+  }
+
+  .about-image {
+    margin-right: 20px;
+  }
+
+  .about-content {
+    text-align: left;
+  }
+}
+
