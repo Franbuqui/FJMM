@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQL</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+</head>
+<body>
+    <h1>SQL Script</h1>
+    <pre><code class="language-sql">
+        SELECT *
+        FROM `prestamos_2015`.`merchants`;
+        SELECT *
+        FROM `prestamos_2015`.`orders`;
+        SELECT *
+        FROM `prestamos_2015`. `refunds`;
+        
+        #ejercicio 2 apartado 1
+        
+        SELECT 
+            country,
+            status,
+            COUNT(*) AS total_operaciones,
+            AVG(amount) AS importe_promedio
+        FROM 
+            prestamos_2015.orders o
+        JOIN 
+            prestamos_2015.merchants m ON o.merchant_id = m.merchant_id
+        WHERE 
+            o.created_at > '2015-07-01'
+            AND o.amount > 100
+            AND o.amount < 1500
+            AND o.country IN ('Francia', 'Portugal', 'España')
+        GROUP BY 
+            country, status
+        ORDER BY 
+            importe_promedio DESC;
+        
+
+
+
+        #ejercicio 2 apartado 2
+        
+        SELECT 
+            o.country,
+            COUNT(*) AS total_operaciones,
+            MAX(o.amount) AS maximo_operacion,
+            MIN(o.amount) AS minimo_operacion
+        FROM 
+            prestamos_2015.orders o
+        WHERE 
+            o.status NOT IN ('Delinquent', 'Cancelled')
+            AND o.amount > 100
+        GROUP BY 
+            o.country
+        ORDER BY 
+            total_operaciones DESC
+        LIMIT 3;
+        
+        #ejercicio 3
+        #1
+        SELECT 
+            m.merchant_id,
+            m.name AS nombre_comercio,
+            o.country,
+            COUNT(o.order_id) AS total_operaciones,
+            AVG(o.amount) AS valor_promedio,
+              SUM(CASE 
+                WHEN (r.amount) > 0 THEN 1
+                ELSE 0
+            END ) AS total_devoluciones,
+            CASE 
+                WHEN SUM(IFNULL(r.amount, 0)) > 0 THEN 'Sí'
+                ELSE 'No'
+            END AS acepta_devoluciones
+        FROM 
+            prestamos_2015.orders o
+        JOIN 
+            prestamos_2015.merchants m ON o.merchant_id = m.merchant_id
+        LEFT JOIN 
+            prestamos_2015.refunds r ON o.order_id = r.order_id
+        WHERE 
+            o.country IN ('Marruecos', 'Italia', 'España', 'Portugal')
+        GROUP BY 
+            m.merchant_id, m.name, o.country
+        HAVING 
+            total_operaciones > 10
+        ORDER BY 
+            total_operaciones ASC;
+            
+        #2
+        CREATE VIEW prestamos_2015.orders_view AS
+        SELECT 
+            o.order_id,
+            o.created_at,
+            o.status,
+            o.country,
+            o.amount AS order_amount,
+            o.merchant_id AS order_merchant_id,
+            m.name AS merchant_name,
+            COUNT(r.order_id) AS count_devoluciones,
+            SUM(IFNULL(r.amount, 0)) AS sum_devoluciones
+        FROM 
+            prestamos_2015.orders o
+        JOIN 
+            prestamos_2015.merchants m ON o.merchant_id = m.merchant_id
+        LEFT JOIN 
+            prestamos_2015.refunds r ON o.order_id = r.order_id
+        GROUP BY 
+            o.order_id,
+            o.created_at,
+            o.status,
+            o.country,
+            o.amount,
+            o.merchant_id,
+            m.name;
+        
+        SELECT *
+        FROM `prestamos_2015`.`orders_view`;
+        
+        
+        #ejercicio 4
+        
+        SELECT
+            o.country,
+            DATE_FORMAT(o.created_at, '%Y-%m') AS month,
+            COUNT(o.order_id) AS order_count,
+            SUM(o.amount) AS total_amount,
+            COALESCE(SUM(r.amount), 0) AS total_refunds
+        FROM
+            prestamos_2015.orders o
+        JOIN
+            prestamos_2015.merchants m ON o.merchant_id = m.merchant_id
+        LEFT JOIN
+            prestamos_2015.refunds r ON o.order_id = r.order_id
+        GROUP BY
+            o.country,
+            DATE_FORMAT(o.created_at, '%Y-%m')
+        ORDER BY
+            o.country,
+            DATE_FORMAT(o.created_at, '%Y-%m');
+        
+        ##########################
+        
+        SELECT
+            merchant_name,
+            country,
+            order_count,
+            total_amount,
+            total_refunds
+        FROM (
+            SELECT
+                m.name AS merchant_name,
+                o.country,
+                COUNT(o.order_id) AS order_count,
+                SUM(o.amount) AS total_amount,
+                COALESCE(SUM(r.amount), 0) AS total_refunds,
+                SUM(COUNT(o.order_id)) OVER (PARTITION BY m.name) AS total_orders_per_merchant
+            FROM
+                prestamos_2015.orders o
+            JOIN
+                prestamos_2015.merchants m ON o.merchant_id = m.merchant_id
+            LEFT JOIN
+                prestamos_2015.refunds r ON o.order_id = r.order_id
+            GROUP BY
+                m.name,
+                o.country
+        ) AS subquery
+        WHERE total_orders_per_merchant >= 15
+          AND order_count > 3
+        ORDER BY
+            merchant_name,
+            country;
+        
+        
+        
+        
+        ###############GASTO TOTAL POR MARCA Y MEDIO
+        
+        SELECT
+            m.name AS merchant_name,
+            COUNT(o.order_id) AS total_orders,
+            SUM(o.amount) AS total_amount,
+            AVG(o.amount) AS average_order_amount
+        FROM
+            prestamos_2015.orders o
+        JOIN
+            prestamos_2015.merchants m ON o.merchant_id = m.merchant_id
+        GROUP BY
+            m.name
+        HAVING 
+            AVG(o.amount) > 150 AND COUNT(o.order_id) > 15
+        ORDER BY 
+            average_order_amount DESC;
+        
+            
+        
+        ##################### PAISES CON GASTO PROMEDIO > GASTO PROMEDIO GLOBAL
+        WITH marca_gasto_medio AS (
+            SELECT
+                m.name AS merchant_name,
+                AVG(o.amount) AS average_order_amount
+            FROM
+                prestamos_2015.orders o
+            JOIN
+                prestamos_2015.merchants m ON o.merchant_id = m.merchant_id
+            GROUP BY
+                m.name
+        ),
+        pais_gasto_medio AS (
+            SELECT
+                m.name AS merchant_name,
+                o.country,
+                AVG(o.amount) AS average_order_amount_per_country
+            FROM
+                prestamos_2015.orders o
+            JOIN
+                prestamos_2015.merchants m ON o.merchant_id = m.merchant_id
+            GROUP BY
+                m.name,
+                o.country
+        )
+        SELECT
+            p.merchant_name,
+            p.country,
+            p.average_order_amount_per_country
+        FROM
+            pais_gasto_medio p
+        JOIN
+            marca_gasto_medio m ON p.merchant_name = m.merchant_name
+        WHERE
+            p.average_order_amount_per_country > m.average_order_amount
+        ORDER BY
+            p.merchant_name,
+            p.country;
+        
+        
+        ################### PAIS CON MAYOR GASTO PROMEDIO > GASTO PROMEDIO GLOBAL
+        WITH marca_gasto_medio AS (
+            SELECT
+                m.name AS merchant_name,
+                AVG(o.amount) AS average_order_amount
+            FROM
+                prestamos_2015.orders o
+            JOIN
+                prestamos_2015.merchants m ON o.merchant_id = m.merchant_id
+            GROUP BY
+                m.name
+        ),
+        pais_gasto_medio AS (
+            SELECT
+                m.name AS merchant_name,
+                o.country,
+                AVG(o.amount) AS average_order_amount_per_country
+            FROM
+                prestamos_2015.orders o
+            JOIN
+                prestamos_2015.merchants m ON o.merchant_id = m.merchant_id
+            GROUP BY
+                m.name,
+                o.country
+        ),
+        pais_con_mayor_gasto AS (
+            SELECT
+                p.merchant_name,
+                p.country,
+                p.average_order_amount_per_country,
+                ROW_NUMBER() OVER(PARTITION BY p.merchant_name ORDER BY p.average_order_amount_per_country DESC) AS rn
+            FROM
+                pais_gasto_medio p
+            JOIN
+                marca_gasto_medio m ON p.merchant_name = m.merchant_name
+            WHERE
+                p.average_order_amount_per_country > m.average_order_amount
+        )
+        SELECT
+            merchant_name,
+            country,
+            average_order_amount_per_country
+        FROM
+            pais_con_mayor_gasto
+        WHERE
+            rn = 1;
+        
+        
+        #################### PAIS DONDE MAS ORDENES TIENE LAS MARCAS Y CUANTAS ORDENES SON
+        WITH ordenes_por_pais AS (
+            SELECT
+                m.name AS merchant_name,
+                o.country,
+                COUNT(o.order_id) AS total_orders,
+                ROW_NUMBER() OVER(PARTITION BY m.name ORDER BY COUNT(o.order_id) DESC) AS rn,
+                DENSE_RANK() OVER(ORDER BY COUNT(o.order_id) DESC) AS dr
+            FROM
+                orders o
+            JOIN
+                merchants m ON o.merchant_id = m.merchant_id
+            GROUP BY
+                m.name,
+                o.country
+        )
+        SELECT
+            merchant_name,
+            country,
+            total_orders
+        FROM
+            ordenes_por_pais
+        WHERE
+            rn = 1 OR dr = 1;
+        
+        
+      
+        
+        
+
+
+
+

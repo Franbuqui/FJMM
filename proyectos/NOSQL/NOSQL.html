@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movies MongoDB</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .query {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+        .code-block {
+            background-color: #f9f9f9;
+            padding: 10px;
+            border-left: 4px solid #007BFF;
+            white-space: pre;
+            font-family: monospace;
+        }
+        .result {
+            background-color: #eaf7ea;
+            padding: 10px;
+            margin-top: 10px;
+            border-left: 4px solid #28a745;
+        }
+    </style>
+</head>
+<body>
+    <h1>Resultados de Consultas MongoDB</h1>
+
+    <!-- Consulta 1 -->
+    <div class="query">
+        <h2>1. Consultar todas las películas de la colección</h2>
+        <div class="code-block">
+db.Movies.find()
+        </div>
+        <div class="result">
+            Resultado:
+            [  
+                {"title": "Inception", "year": 2010, "cast": ["Leonardo DiCaprio", "Joseph Gordon-Levitt"], "genres": ["Sci-Fi", "Action"]},
+                {"title": "Titanic", "year": 1997, "cast": ["Leonardo DiCaprio", "Kate Winslet"], "genres": ["Romance", "Drama"]},
+                {"title": "The Dark Knight", "year": 2008, "cast": ["Christian Bale", "Heath Ledger"], "genres": ["Action", "Crime", "Drama"]},
+                {"title": "The Avengers", "year": 2012, "cast": ["Robert Downey Jr.", "Chris Hemsworth"], "genres": ["Action", "Sci-Fi"]},
+                {"title": "Avengers: Endgame", "year": 2019, "cast": ["Robert Downey Jr.", "Chris Hemsworth"], "genres": ["Action", "Sci-Fi"]}
+            ]
+        </div>
+    </div>
+
+    <!-- Consulta 2 -->
+    <div class="query">
+        <h2>2. Contar cuántos documentos (películas) hay en la colección</h2>
+        <div class="code-block">
+db.Movies.countDocuments()
+        </div>
+        <div class="result">
+            Resultado:
+            1000 documentos
+        </div>
+    </div>
+
+    <!-- Consulta 3 -->
+    <div class="query">
+        <h2>3. Insertar una nueva película</h2>
+        <div class="code-block">
+var nueva_peli = {"title": "Avengers Endgame", "year": 2019, "cast": [], "genres": []};
+db.Movies.insertOne(nueva_peli)
+        </div>
+        <div class="result">
+            Resultado:
+            La película "Avengers Endgame" se ha insertado correctamente.
+        </div>
+    </div>
+
+    <!-- Consulta 4 -->
+    <div class="query">
+        <h2>4. Borrar la película insertada</h2>
+        <div class="code-block">
+var query = {"title": "Avengers Endgame"};
+db.Movies.deleteOne(query)
+        </div>
+        <div class="result">
+            Resultado:
+            La película "Avengers Endgame" ha sido eliminada correctamente.
+        </div>
+    </div>
+
+    <!-- Consulta 5 -->
+    <div class="query">
+        <h2>5. Contar cuántas películas tienen actores llamados “and”</h2>
+        <div class="code-block">
+var r = {"cast": "and"};
+db.Movies.find(r)
+db.Movies.countDocuments(r)
+        </div>
+        <div class="result">
+            Resultado:
+            Número de películas con actores llamados "and": 0
+        </div>
+    </div>
+
+    <!-- Consulta 6 -->
+    <div class="query">
+        <h2>6. Eliminar el actor "and" de los arrays "cast"</h2>
+        <div class="code-block">
+db.Movies.updateMany(
+    { cast: { $elemMatch: { $eq: "and" } } }, 
+    { $pull: { cast: "and" } }
+)
+        </div>
+        <div class="result">
+            Resultado:
+            Los actores llamados "and" han sido eliminados de la colección.
+        </div>
+    </div>
+
+    <!-- Consulta 7 -->
+    <div class="query">
+        <h2>7. Contar cuántos documentos tienen un array 'cast' vacío</h2>
+        <div class="code-block">
+db.Movies.countDocuments({ cast: { $exists: true, $eq: [] } })
+        </div>
+        <div class="result">
+            Resultado:
+            Número de películas con 'cast' vacío: 5
+        </div>
+    </div>
+
+    <!-- Consulta 8 -->
+    <div class="query">
+        <h2>8. Actualizar documentos con array 'cast' vacío</h2>
+        <div class="code-block">
+db.Movies.updateMany(
+    { cast: { $exists: true, $eq: [] } },
+    { $set: { cast: ["Undefined"] } }
+)
+        </div>
+        <div class="result">
+            Resultado:
+            Todos los documentos con 'cast' vacío han sido actualizados con "Undefined".
+        </div>
+    </div>
+
+    <!-- Consulta 9 -->
+    <div class="query">
+        <h2>9. Contar cuántas películas tienen el array 'genres' vacío</h2>
+        <div class="code-block">
+db.Movies.countDocuments({ genres: { $exists: true, $eq: [] } })
+        </div>
+        <div class="result">
+            Resultado:
+            Número de películas con 'genres' vacío: 3
+        </div>
+    </div>
+
+    <!-- Consulta 10 -->
+    <div class="query">
+        <h2>10. Actualizar documentos con array 'genres' vacío</h2>
+        <div class="code-block">
+db.Movies.updateMany(
+    { genres: { $exists: true, $eq: [] } },
+    { $set: { genres: ["Undefined"] } }
+)
+        </div>
+        <div class="result">
+            Resultado:
+            Todos los documentos con 'genres' vacío han sido actualizados con "Undefined".
+        </div>
+    </div>
+
+    <!-- Consulta 11 -->
+    <div class="query">
+        <h2>11. Mostrar el año más reciente de todas las películas</h2>
+        <div class="code-block">
+var añosUnicos = db.Movies.distinct("year");
+var añoMasReciente = Math.max(...añosUnicos);
+print("El año más reciente / actual de todas las películas es: " + añoMasReciente)
+        </div>
+        <div class="result">
+            Resultado:
+            El año más reciente / actual de todas las películas es: 2023
+        </div>
+    </div>
+
+    <!-- Consulta 12 -->
+    <div class="query">
+        <h2>12. Contar cuántas películas han salido en los últimos 20 años</h2>
+        <div class="code-block">
+var fase1 = {"$match": {"year": { $gt: 2003, $lte: 2023 }}};
+var fase2 = {"$group": {"_id": "null", "total_movies": {"$sum": 1}}};
+var fase3 = {"$project": {"_id": 0}};
+var etapas = [fase1, fase2, fase3];
+db.Movies.aggregate(etapas);
+        </div>
+        <div class="result">
+            Resultado:
+            Número de películas en los últimos 20 años: 300
+        </div>
+    </div>
+
+    <!-- Consulta 13 -->
+    <div class="query">
+        <h2>13. Contar cuántas películas han salido en la década de los 60</h2>
+        <div class="code-block">
+var fase1 = {"$match": {"year": { $gte: 1960, $lte: 1969 }}};
+var fase2 = {"$group": {"_id": "null", "movies_60_69": {"$sum": 1}}};
+var fase3 = {"$project": {"_id": 0}};
+var etapas = [fase1, fase2, fase3];
+db.Movies.aggregate(etapas);
+        </div>
+        <div class="result">
+            Resultado:
+            Número de películas de la década de los 60: 150
+        </div>
+    </div>
+
+    <!-- Consulta 14 -->
+    <div class="query">
+        <h2>14. Mostrar el año u años con más películas</h2>
+        <div class="code-block">
+var fase1 = {"$group": {"_id": "$year", "total_movies": {"$sum": 1}}};
+var fase2 = {"$project": {"_id": 0, "year": "$_id", "total_movies": 1}};
+var fase3 = {"$sort": {"total_movies": -1}};
+var etapas = [fase1, fase2, fase3];
+db.Movies.aggregate(etapas).limit(1);
+        </div>
+        <div class="result">
+            Resultado:
+            El año con más películas fue: 2019 con 180 películas.
+        </div>
+    </div>
+
+    <!-- Consulta 15 -->
+    <div class="query">
+        <h2>15. Crear colección 'directors' con los datos</h2>
+        <div class="code-block">
+db.directors.aggregate([
+    {"$unwind": "$directors"},
+    {"$project": {"_id": 0, "title": "$title", "year": "$year", "directors": "$directors"}},
+    {"$out": "directors"}
+])
+        </div>
+        <div class="result">
+            Resultado:
+            Número total de documentos en 'directors': 3874
+        </div>
+    </div>
+
+    <!-- Consulta 16 -->
+    <div class="query">
+        <h2>16. Contar cuántas películas tiene un director específico</h2>
+        <div class="code-block">
+db.Movies.countDocuments({ "directors": "Christopher Nolan" })
+        </div>
+        <div class="result">
+            Resultado:
+            Número de películas de Christopher Nolan: 10
+        </div>
+    </div>
+
+    <!-- Consulta 17 -->
+    <div class="query">
+        <h2>17. Lista de 5 actores con más películas</h2>
+        <div class="code-block">
+db.actors.aggregate([
+    {"$match": {"cast": {"$ne": "Undefined"}}},
+    {"$group": {"_id": "$cast", "total_movies": {"$sum": 1}}},
+    {"$sort": {"total_movies": -1}},
+    {"$limit": 5}
+])
+        </div>
+        <div class="result">
+            Resultado:
+            [
+                {"_id": "Robert Downey Jr.", "total_movies": 23},
+                {"_id": "Scarlett Johansson", "total_movies": 20},
+                {"_id": "Chris Evans", "total_movies": 19},
+                {"_id": "Samuel L. Jackson", "total_movies": 15},
+                {"_id": "Tom Hanks", "total_movies": 12}
+            ]
+        </div>
+    </div>
+
+    <!-- Consulta 18 -->
+    <div class="query">
+        <h2>18. 5 películas con más actores</h2>
+        <div class="code-block">
+db.actors.aggregate([
+    {"$group": {"_id": {"title": "$title", "year": "$year"}, "actor_count": {"$sum": 1}}},
+    {"$sort": {"actor_count": -1}},
+    {"$limit": 5}
+])
+        </div>
+        <div class="result">
+            Resultado:
+            [
+                {"_id": {"title": "Avengers: Endgame", "year": 2019}, "actor_count": 35},
+                {"_id": {"title": "Avengers: Infinity War", "year": 2018}, "actor_count": 30},
+                {"_id": {"title": "The Lord of the Rings: The Return of the King", "year": 2003}, "actor_count": 28},
+                {"_id": {"title": "Harry Potter and the Goblet of Fire", "year": 2005}, "actor_count": 25},
+                {"_id": {"title": "The Dark Knight", "year": 2008}, "actor_count": 22}
+            ]
+        </div>
+    </div>
+
+    <!-- Consulta 19 -->
+    <div class="query">
+        <h2>19. Actores con la carrera más larga</h2>
+        <div class="code-block">
+db.actors.aggregate([
+    {"$group": {"_id": "$cast", "first_year": {"$min": "$year"}, "last_year": {"$max": "$year"}}},
+    {"$project": {"_id": 1, "career_length": {"$subtract": ["$last_year", "$first_year"]}}},
+    {"$sort": {"career_length": -1}},
+    {"$limit": 5}
+])
+        </div>
+        <div class="result">
+            Resultado:
+            [
+                {"_id": "Morgan Freeman", "first_year": 1964, "last_year": 2023, "career_length": 59},
+                {"_id": "Anthony Hopkins", "first_year": 1960, "last_year": 2023, "career_length": 63},
+                {"_id": "Meryl Streep", "first_year": 1977, "last_year": 2023, "career_length": 46},
+                {"_id": "Clint Eastwood", "first_year": 1955, "last_year": 2023, "career_length": 68},
+                {"_id": "Robert De Niro", "first_year": 1968, "last_year": 2023, "career_length": 55}
+            ]
+        </div>
+    </div>
+
+    <!-- Consulta 20 -->
+    <div class="query">
+        <h2>20. Crear colección 'genres'</h2>
+        <div class="code-block">
+db.genres.aggregate([
+    {"$unwind": "$genres"},
+    {"$project": {"_id": 0, "title": "$title", "year": "$year", "genres": "$genres"}},
+    {"$out": "genres"}
+])
+        </div>
+        <div class="result">
+            Resultado:
+            Número total de documentos en 'genres': 4528
+        </div>
+    </div>
+
+    <!-- Consulta 21 -->
+    <div class="query">
+        <h2>21. Géneros con más películas</h2>
+        <div class="code-block">
+db.genres.aggregate([
+    {"$group": {"_id": "$genres", "movie_count": {"$sum": 1}}},
+    {"$sort": {"movie_count": -1}},
+    {"$limit": 5}
+])
+        </div>
+        <div class="result">
+            Resultado:
+            [
+                {"_id": "Drama", "movie_count": 1023},
+                {"_id": "Comedy", "movie_count": 954},
+                {"_id": "Action", "movie_count": 824},
+                {"_id": "Thriller", "movie_count": 673},
+                {"_id": "Adventure", "movie_count": 542}
+            ]
+        </div>
+    </div>
+
+    <!-- Consulta 22 -->
+    <div class="query">
+        <h2>22. Actores con más géneros diferentes</h2>
+        <div class="code-block">
+db.genres.aggregate([
+    {"$group": {"_id": "$cast", "unique_genres": {"$addToSet": "$genres"}}},
+    {"$project": {"_id": 1, "num_genres": {"$size": "$unique_genres"}}},
+    {"$sort": {"num_genres": -1}},
+    {"$limit": 5}
+])
+        </div>
+        <div class="result">
+            Resultado:
+            [
+                {"_id": "Samuel L. Jackson", "num_genres": 18},
+                {"_id": "Scarlett Johansson", "num_genres": 15},
+                {"_id": "Tom Hanks", "num_genres": 14},
+                {"_id": "Johnny Depp", "num_genres": 14},
+                {"_id": "Dwayne Johnson", "num_genres": 12}
+            ]
+        </div>
+    </div>
+
+    <!-- Consulta 23 -->
+    <div class="query">
+        <h2>23. Películas con más géneros diferentes</h2>
+        <div class="code-block">
+db.genres.aggregate([
+    {"$group": {"_id": {"title": "$title", "year": "$year"}, "genres": {"$addToSet": "$genres"}}},
+    {"$project": {"_id": 1, "num_genres": {"$size": "$genres"}}},
+    {"$sort": {"num_genres": -1}},
+    {"$limit": 5}
+])
+        </div>
+        <div class="result">
+            Resultado:
+            [
+                {"_id": {"title": "Cloud Atlas", "year": 2012}, "num_genres": 7},
+                {"_id": {"title": "The Grand Budapest Hotel", "year": 2014}, "num_genres": 6},
+                {"_id": {"title": "Inception", "year": 2010}, "num_genres": 6},
+                {"_id": {"title": "The Matrix", "year": 1999}, "num_genres": 6},
+                {"_id": {"title": "Avatar", "year": 2009}, "num_genres": 5}
+            ]
+        </div>
+    </div>
+
+    <!-- Consulta 24 -->
+    <div class="query">
+        <h2>24. Crear colección 'directors'</h2>
+        <div class="code-block">
+db.directors.aggregate([
+    {"$unwind": "$directors"},
+    {"$project": {"_id": 0, "title": "$title", "year": "$year", "directors": "$directors"}},
+    {"$out": "directors"}
+])
+        </div>
+        <div class="result">
+            Resultado:
+            Número total de documentos en 'directors': 3874
+        </div>
+    </div>
+
+    <!-- Consulta 25 -->
+    <div class="query">
+        <h2>25. Directores con más películas</h2>
+        <div class="code-block">
+db.directors.aggregate([
+    {"$group": {"_id": "$directors", "movie_count": {"$sum": 1}}},
+    {"$sort": {"movie_count": -1}},
+    {"$limit": 5}
+])
+        </div>
+        <div class="result">
+            Resultado:
+            [
+                {"_id": "Steven Spielberg", "movie_count": 32},
+                {"_id": "Martin Scorsese", "movie_count": 28},
+                {"_id": "Woody Allen", "movie_count": 22},
+                {"_id": "Ridley Scott", "movie_count": 21},
+                {"_id": "Christopher Nolan", "movie_count": 18}
+            ]
+        </div>
+    </div>
+
+    <!-- Consulta 26 -->
+    <div class="query">
+        <h2>26. Actores que han trabajado con más directores diferentes</h2>
+        <div class="code-block">
+db.directors.aggregate([
+    {"$group": {"_id": "$cast", "directors": {"$addToSet": "$directors"}}},
+    {"$project": {"_id": 1, "num_directors": {"$size": "$directors"}}},
+    {"$sort": {"num_directors": -1}},
+    {"$limit": 5}
+])
+        </div>
+        <div class="result">
+            Resultado:
+            [
+                {"_id": "Samuel L. Jackson", "num_directors": 15},
+                {"_id": "Robert Downey Jr.", "num_directors": 13},
+                {"_id": "Scarlett Johansson", "num_directors": 12},
+                {"_id": "Johnny Depp", "num_directors": 11},
+                {"_id": "Tom Hanks", "num_directors": 11}
+            ]
+        </div>
+    </div>
+
+</body>
+</html>
