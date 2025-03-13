@@ -418,6 +418,63 @@ section + section {
   background: var(--secondary-color);
 }
 
+
+#certificates {
+  text-align: center;
+  background: transparent;
+  color: white;
+  padding: 50px 20px;
+}
+
+.certificates-container {
+  max-width: 80%;
+  margin: auto;
+}
+
+.certificates-slider {
+  width: 100%;
+  margin: auto;
+}
+
+/* Estilo de cada certificado */
+.certificate-item {
+  background: rgba(0, 0, 0, 0.6);
+  padding: 15px;
+  border-radius: 10px;
+  max-width: 220px;  /* Se reduce el tamaño */
+  text-align: center;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+  margin: 0 auto;
+}
+
+.certificate-item img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 5px;
+}
+
+/* Ajustar el tamaño del botón de certificados */
+.certificate-item .btn {
+  display: block;
+  width: 80%; /* Ajuste dinámico según el tamaño del contenedor */
+  max-width: 150px; /* Evitar que el botón sea demasiado grande */
+  margin: 10px auto; /* Centrar el botón */
+  padding: 8px 12px; /* Reducir el padding */
+  font-size: 14px; /* Reducir el tamaño del texto */
+  text-align: center;
+  background-color: #007bff; /* Color de fondo (ajustable) */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+}
+
+.certificate-item .btn:hover {
+  background-color: #0056b3;
+}
+
+
+
 /* Sección Sobre Mí */
 .about-container {
   display: flex;
@@ -878,4 +935,5 @@ img, video {
     text-align: left;
   }
 }
+
 
